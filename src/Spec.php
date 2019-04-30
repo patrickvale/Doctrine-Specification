@@ -697,7 +697,12 @@ class Spec
     {
         $arguments = func_get_args();
 
-        return new PlatformFunction(array_shift($arguments), $arguments);
+        $name = array_shift($arguments);
+        if (is_array($arguments)) {
+            $arguments = array_map('end', $arguments);
+        }
+
+        return new PlatformFunction($name, $arguments);
     }
 
     /**
